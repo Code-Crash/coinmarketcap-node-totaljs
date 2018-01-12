@@ -1,0 +1,16 @@
+/*auto*/
+
+body {
+    margin: 0;
+    font: normal 12px Arial;
+    color: gray
+}
+
+._btnContainer {
+    margin: 10px;
+    text-align: right;
+}
+
+._btnContainer button {
+    margin-left: 10px;
+}

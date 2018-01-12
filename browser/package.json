@@ -1,0 +1,19 @@
+{
+    "name": "CoinBrowser",
+    "description": "This app will show the data from socket to user.",
+    "version": "1.0.0",
+    "main": "index.js",
+    "dependencies": {
+        "total.js": "latest"
+    },
+    "scripts": {
+        "start": "node index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "empty",
+        "project"
+    ],
+    "author": "Code-Crash",
+    "license": "MIT"
+}

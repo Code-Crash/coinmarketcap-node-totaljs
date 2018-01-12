@@ -1,0 +1,21 @@
+{
+    "name": "ticker",
+    "description": "Ticker will featch the data from coinmarketcap using node-coinmarketcap module and broadcst by socket to all connected users",
+    "version": "1.0.0",
+    "main": "index.js",
+    "dependencies": {
+        "node-coinmarketcap": "^0.2.0",
+        "total.js": "latest",
+        "underscore": "^1.8.3"
+    },
+    "scripts": {
+        "start": "node index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "empty",
+        "project"
+    ],
+    "author": "Code-Crash",
+    "license": "MIT"
+}

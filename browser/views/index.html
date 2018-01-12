@@ -1,0 +1,103 @@
+<!-- /app/css/ -->
+@{ngStyle('app')}
+
+<!-- /app/services/ -->
+@{ngService('websocketService')}
+
+<!-- cdnjs -->
+@{ngLocale('en-us')}
+
+<!-- /app/controllers/ -->
+@{ngController('home')}
+<div ng-controller="HomeCtrl">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">{{ name }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto"></ul>
+            <form class="form-inline my-2 my-lg-0">
+                <div class="form-group">
+                    <input type="text" ng-model="search" class="form-control mr-sm-2" placeholder="Search">
+                </div>
+            </form>
+        </div>
+    </nav>
+
+
+    <div class="">
+        <div class="_btnContainer">
+            <i class="fa fa-info-circle btn btn-outline-primary" aria-hidden="true" data-toggle="modal" data-target="#infoModal"></i>
+            <button ng-click="open()" class="btn btn-outline-success btn-sm" ng-disabled="isConnected">
+                CONNECT
+            </button>
+            <button ng-click="close()" class="btn btn-outline-danger btn-sm" ng-disabled="!isConnected">
+                DISCONNECT
+            </button>
+        </div>
+
+        <div class="table-responsive-sm">
+            <table class="table table-striped table-dark table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col" ng-click="sortKey='rank'; reverse = !reverse">
+                            <span class="" ng-show="sortKey=='rank'" ng-class="{'fa fa-arrow-up':reverse,'fa fa-arrow-down':!reverse}"></span> #
+                        </th>
+                        <th scope="col" ng-click="sortKey='name'; reverse = !reverse">
+                            <span class="" ng-show="sortKey=='name'" ng-class="{'fa fa-arrow-up':reverse,'fa fa-arrow-down':!reverse}"></span> Name
+                        </th>
+                        <th scope="col" ng-click="sortKey='market_cap_usd'; reverse = !reverse">
+                            <span class="" ng-show="sortKey=='market_cap_usd'" ng-class="{'fa fa-arrow-up':reverse,'fa fa-arrow-down':!reverse}"></span> Market Cap
+                        </th>
+                        <th scope="col" ng-click="sortKey='price_usd'; reverse = !reverse">
+                            <span class="" ng-show="sortKey=='price_usd'" ng-class="{'fa fa-arrow-up':reverse,'fa fa-arrow-down':!reverse}"></span> Market Cap
+                        </th>
+                        <th scope="col" ng-click="sortKey='total_supply'; reverse = !reverse">
+                            <span class="" ng-show="sortKey=='total_supply'" ng-class="{'fa fa-arrow-up':reverse,'fa fa-arrow-down':!reverse}"></span> Total Supply
+                        </th>
+                        <th scope="col" ng-click="sortKey='percent_change_24h'; reverse = !reverse">
+                            <span class="" ng-show="sortKey=='percent_change_24h'" ng-class="{'fa fa-arrow-up':reverse,'fa fa-arrow-down':!reverse}"></span>Change (24H)(%)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="coin in messages | orderBy : sortKey : reverse | filter : search">
+                        <td scope="col">{{ coin.rank }}</td>
+                        <td scope="col">{{ coin.name }} ({{coin.symbol }})</td>
+                        <td scope="col">{{ coin.market_cap_usd | currency }}</td>
+                        <td scope="col">{{ coin.price_usd | currency }}</td>
+                        <td scope="col">{{ coin.total_supply }} {{coin.symbol }}</td>
+                        <td scope="col">{{ coin.percent_change_24h }}%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoModalLabel">How it works?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">1. Click on CONNECT Button</li>
+                        <li class="list-group-item">2. It will fetch the data from socket.</li>
+                        <li class="list-group-item">3. It will apply the data on table.</li>
+                        <li class="list-group-item">4. When socket send the data again, it will check for the same <code>id</code> with data and update it.</li>
+                        <li class="list-group-item">5. To dosconnect from socket, click on DISCONNECT button</li>
+                        <li class="list-group-item">6. You can search the coings by Search box</li>
+                        <li class="list-group-item">7. You can sort the colum by click on column</li>
+                        <li class="list-group-item">8. If you are not able to see the real time data, see console to getting the data in each 30 seconds.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
