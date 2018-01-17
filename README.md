@@ -83,5 +83,5 @@ $npm start
 
 #### Author:
 
-* Praivn Tiwari
+* Pravin Tiwari
 * Mail:  pravintiwari1992@gmail.com
